@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Component
+class Leaf
+class Composite
+
+Component <-- Leaf 
+Composite "1"  o-- "1..*"Component : has a >
+Component <--- Composite
+
+title BTree UML Conception
+
+
+
+note right of Composite
+this is what will represent the tree 
+( instead of a BTree class)
+end note
+
+abstract class Component{
+    # keys : List<int>
+    + __init__()
+    + addKey(key : int) : Void
+    + removeKey(key : int) : Void
+    + getKeys() : List<int>
+    + {abstract} findKey(key : int) : bool
+}
+
+class Composite{
+# children : List<Component>
++ __init__()
++ findKey(key : int) : bool
++ findNextNode(key : init) : bool
++ addChild(child : Component) : void
++ getChildren() : List<Component>
+}
+
+class Leaf{
+    + __init__ ()
+    + findKey(key : int) : bool
+}
+
+
+@enduml
